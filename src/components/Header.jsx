@@ -2,14 +2,16 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ProductContext } from "../context/productContext";
-import { BasketContext } from "../context/basketContext";
+import { BasketContext } from "./../context/basketContext";
 
 const Header = () => {
   const { setCategory } = useContext(ProductContext);
   const { basket } = useContext(BasketContext);
+
   const [categories, setCategories] = useState([]);
 
-  // api'dan kategori verişni al
+  // Api'den kategori verilerini al.
+
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products/categories")
@@ -17,11 +19,10 @@ const Header = () => {
   }, []);
 
   /*Sepetteki ürün sayısını hesapla */
-  const total = basket.reduce((total,product) => total + product.amount,0)
-
+  const total = basket.reduce((total, product) => total + product.amount, 0);
 
   return (
-    <nav className="navbar navbar-dark bg-black sticky-top navbar-expand-md">
+    <nav className="navbar navbar-dark bg-black sticky-top navbar-expand-md ">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           CodeHunt Store
@@ -74,7 +75,7 @@ const Header = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Kategoriler
+                  Katgoriler
                 </Link>
                 <ul className="dropdown-menu dropdown-menu-dark">
                   <li onClick={() => setCategory("all")}>
@@ -82,6 +83,7 @@ const Header = () => {
                       Hepsi
                     </a>
                   </li>
+
                   {categories?.map((cat) => (
                     <li onClick={() => setCategory(cat)}>
                       <a className="dropdown-item" href="#">

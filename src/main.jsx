@@ -7,16 +7,16 @@ import "./index.css";
 import { ProductProvider } from "./context/productContext.jsx";
 import { BasketProvider } from "./context/basketContext.jsx";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BasketProvider>
-      <ProductProvider>
+    <ProductProvider>
+      <BasketProvider>
         <App />
-      </ProductProvider>
-    </BasketProvider>
-    <ToastContainer />
+      </BasketProvider>
+    </ProductProvider>
+
+    <ToastContainer autoClose={500} />
   </React.StrictMode>
 );
